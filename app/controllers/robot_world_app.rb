@@ -42,4 +42,13 @@ class RobotWorldApp < Sinatra::Base
     erb :edit
   end
 
+  delete '/robots/:id' do |id|
+    robot_inventory.destroy(id.to_i)
+    redirect '/robots'
+  end
+
+  get '/robots/summary' do
+    @ = robot_inventory.
+    erb :summary
+  end
 end

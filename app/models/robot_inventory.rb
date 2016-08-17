@@ -1,5 +1,6 @@
 require 'yaml/store'
 require_relative 'robot'
+require 'time'
 
 class RobotInventory
   attr_reader :database
@@ -53,5 +54,24 @@ class RobotInventory
       target["department"] = robot[:department]
     end
   end
-  
+
+  def destroy(id)
+    database.transaction do
+      database['robots'].delete_if { |robot| robot['id'] == id }
+    end
+  end
+
+  def age(dob)
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
+
+  def avg_age
+    num_of_robots = raw_robots.count
+    ages = raw_robots.map do |robot|
+      age(robot["birthdate"])
+    end
+    ages.reduce(:+)/num_of_robots
+  end
+
 end
