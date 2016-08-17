@@ -1,0 +1,38 @@
+---
+robots:
+- id: 1
+  name: harry
+  city: douglas
+  state: fl
+  birthdate: 13/59/10
+  date_hired: 39/23/23
+  department: not programming
+- id: 2
+  name: Matt
+  city: Englewood
+  state: CO
+  birthdate: 12/06/1982
+  date_hired: 8/15/2016
+  department: Programming Department
+- id: 3
+  name: Matt
+  city: Englewood
+  state: CO
+  birthdate: 12/06/1982
+  date_hired: 8/15/2016
+  department: Programming Department
+- id: 4
+  name: Matt
+  city: Englewood
+  state: CO
+  birthdate: 12/06/1982
+  date_hired: 8/15/2016
+  department: Programming Department
+- id: 5
+  name: John
+  city: Boston
+  state: MA
+  birthdate: 12/9/20
+  date_hired: 14/6/29
+  department: Computers
+total: 5
