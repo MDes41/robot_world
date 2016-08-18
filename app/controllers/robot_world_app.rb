@@ -1,4 +1,3 @@
-require 'models/robot_inventory'
 
 class RobotWorldApp < Sinatra::Base
   set :root, File.expand_path("..", __dir__)
@@ -33,7 +32,11 @@ class RobotWorldApp < Sinatra::Base
   end
 
   def robot_inventory
-    database = YAML::Store.new('db/robot_inventory')
+    if ENV["RACK_ENV"] == 'test'
+      database = YAML::Store.new("db/robot_inventory_test")
+    else
+      database = YAML::Store.new('db/robot_inventory')
+    end
     @robot_inventory ||= RobotInventory.new(database)
   end
 
@@ -48,7 +51,8 @@ class RobotWorldApp < Sinatra::Base
   end
 
   get '/robots/summary' do
-    @ = robot_inventory.
+    @ages = robot_inventory.ages
+    @num_of_robots = robot_inventory.num_of_robots
     erb :summary
   end
 end

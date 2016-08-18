@@ -63,15 +63,28 @@ class RobotInventory
 
   def age(dob)
     now = Time.now.utc.to_date
-    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+    parsed_dob = Time.parse(dob)
+    now.year - parsed_dob.year - ((now.month > parsed_dob.month || (now.month == parsed_dob.month && now.day >= pased_dob.day)) ? 0 : 1)
+  end
+
+  def num_of_robots
+    raw_robots.count
+  end
+
+  def ages
+    raw_robots.map do |robot|
+      age(robot["birthdate"])
+    end
   end
 
   def avg_age
-    num_of_robots = raw_robots.count
-    ages = raw_robots.map do |robot|
-      age(robot["birthdate"])
-    end
     ages.reduce(:+)/num_of_robots
   end
 
+  def delete_all
+    database.transaction do
+      database['robots'] = []
+      database["total"] = 0
+    end
+  end
 end
