@@ -104,22 +104,9 @@ class RobotInventory
     end
   end
 
-  def robot_hired_per_year
-   
-  end
-
   def number_of_robots_in_each_department
-
+    
   end
-
-  def number_of_robots_in_each_city
-  end
-
-  def number_of_robots_in_each_state
-
-  end
-
-
 end
 
 class Array

@@ -157,13 +157,6 @@ class RobotInventoryTest < Minitest::Test
     assert_equal 0, robot_inventory.all.count
   end
 
-  # def test_that_department_statistics_method
-  #   robot_inventory.create({:department => "Programming"})
-  #   robot_inventory.create({:department => "Programming"})
-  #   robot_inventory.create({:department => "Programming"})
-  #   robot_inventory.create({:department => "Programming"})
-  # end
-
   def test_robots_hire_date_from_large_to_small_organizes_robots_based_on_hire_date
     create_robot1_test_data
     create_robot2_test_data
@@ -186,7 +179,7 @@ class RobotInventoryTest < Minitest::Test
     end
   end
 
-  def test_robots_hire_date_spread_gets_array_of_five_years
+  def test_robots_hire_date_spread_gets_array_of_five_years_or_less
     hire_dates = [2013, 2014, 2015, 2016]
     assert_equal 4, robot_inventory.robots_hire_date_spread(hire_dates).count
     hire_dates = (2010..2020).to_a
