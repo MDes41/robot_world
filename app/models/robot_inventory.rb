@@ -61,8 +61,7 @@ class RobotInventory
     end
   end
 
-  def age(dob)
-    now = Time.now.utc.to_date
+  def age(dob, now = Time.now.utc.to_date)
     parsed_dob = Time.parse(dob)
     now.year - parsed_dob.year - ((now.month > parsed_dob.month || (now.month == parsed_dob.month && now.day >= pased_dob.day)) ? 0 : 1)
   end
@@ -71,9 +70,9 @@ class RobotInventory
     raw_robots.count
   end
 
-  def ages
+  def ages(now = Time.now.utc.to_date)
     raw_robots.map do |robot|
-      age(robot["birthdate"])
+      age(robot["birthdate"], now)
     end
   end
 
@@ -86,5 +85,46 @@ class RobotInventory
       database['robots'] = []
       database["total"] = 0
     end
+  end
+
+  def strip_robot_hire_dates
+    all.map { |robot| robot.date_hired }
+  end
+
+  def sorted_robot_hire_dates(hire_dates)
+    years = hire_dates.map { |hire_date| Time.parse(hire_date).year }
+    (years.min..years.max).to_a
+  end
+
+  def robots_hire_date_spread(hire_dates)
+    if hire_dates.count <= 5
+      hire_dates
+    else
+      hire_dates.spread(5)
+    end
+  end
+
+  def robot_hired_per_year
+   
+  end
+
+  def number_of_robots_in_each_department
+
+  end
+
+  def number_of_robots_in_each_city
+  end
+
+  def number_of_robots_in_each_state
+
+  end
+
+
+end
+
+class Array
+  def spread(n)
+    step = self.length.to_f / (n - 1)
+    (0..(n-2)).to_a.map { |i| self[i * step]} + [self.last]
   end
 end

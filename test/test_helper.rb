@@ -12,40 +12,16 @@ module TestHelpers
     super
   end
 
-  def create_dummy_information
-    robot_inventory.create({
-                            :id => 1,
-                            :name => "Robot1",
-                            :city => "Denver",
-                            :state => "CO",
-                            :birthdate => "12/06/1982",
-                            :date_hired => "8/17/2016",
-                            :department => "Programming"
-                          })
-    robot_inventory.create({
-                            :id => 2,
-                            :name => "Robot2",
-                            :city => "Chicago",
-                            :state => "IL",
-                            :birthdate => "12/06/1983",
-                            :date_hired => "8/17/2015",
-                            :department => "Paper Shredder"
-                          })
-    robot_inventory.create({
-                            :id => 3,
-                            :name => "Robot 3",
-                            :city => "Jacksonville",
-                            :state => "FL",
-                            :birthdate => "12/06/1984",
-                            :date_hired => "8/17/2013",
-                            :department => "Recycling"
-                          })
-  end
-
   def robot_inventory
     database = YAML::Store.new("db/robot_inventory_test")
     @robot_inventory ||= RobotInventory.new(database)
   end
+
+  # def robot_inventory
+  #   database = SQLite3::Database.new("db/robot_inventory_development.db")
+  #   database.results_as_hash = true
+  #   RobotInventory.new(database)
+  # end
 
 end
 
