@@ -12,16 +12,16 @@ module TestHelpers
     super
   end
 
-  def robot_inventory
-    database = YAML::Store.new("db/robot_inventory_test")
-    @robot_inventory ||= RobotInventory.new(database)
-  end
-
   # def robot_inventory
-  #   database = SQLite3::Database.new("db/robot_inventory_development.db")
-  #   database.results_as_hash = true
-  #   RobotInventory.new(database)
+  #   database = YAML::Store.new("db/robot_inventory_test")
+  #   @robot_inventory ||= RobotInventory.new(database)
   # end
+
+  def robot_inventory
+    database = SQLite3::Database.new("db/robot_inventory_test.db")
+    database.results_as_hash = true
+    RobotInventory.new(database)
+  end
 
 end
 

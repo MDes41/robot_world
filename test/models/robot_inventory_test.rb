@@ -39,6 +39,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_create_method_creates_robot_attributes
+    # skip
     create_robot1_test_data
     robot = robot_inventory.all.first
 
@@ -51,6 +52,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_create_method_creates_two_robots
+    # skip
     create_robot1_test_data
     create_robot2_test_data
 
@@ -65,6 +67,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_that_raw_robots_returns_an_array_of_hashes
+    # skip
     create_robot1_test_data
     create_robot2_test_data
 
@@ -75,6 +78,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_all_method_returns_all_3_robots_with_data
+    # skip
     create_robot1_test_data
     create_robot2_test_data
     create_robot3_test_data
@@ -90,6 +94,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_find_by_id_works_for_robot_inventory
+    # skip
     create_robot1_test_data
     create_robot2_test_data
     create_robot3_test_data
@@ -100,6 +105,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_update_method_updates_robot_info_with_new_data
+    # skip
     create_robot1_test_data
 
     robot = robot_inventory.all.first
@@ -111,6 +117,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_avg_age_calculates_age_based_on_set_time_and_birthday
+    # skip
     dob = "06/12/1982"
     now = Time.parse("18/08/2016")
 
@@ -118,6 +125,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_that_ages_calculates_on_each_robot
+    # skip
     create_robot1_test_data
     create_robot2_test_data
     create_robot3_test_data
@@ -129,6 +137,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_number_of_robots_calculated_all_the_robots_in_inventory
+    # skip
     create_robot1_test_data
     create_robot2_test_data
     create_robot3_test_data
@@ -137,16 +146,19 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_avg_age_calculates_avg
+    # skip
     create_robot1_test_data
     create_robot2_test_data
     create_robot3_test_data
 
     robot_inventory.stub :ages, [10, 15, 20] do
+      require "pry"; binding.pry
       assert_equal 15, robot_inventory.avg_age
     end
   end
 
   def test_delete_all_method_deletes_database_and_robot_info
+    skip
     create_robot1_test_data
     create_robot2_test_data
 
@@ -158,6 +170,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_robots_hire_date_from_large_to_small_organizes_robots_based_on_hire_date
+    skip
     create_robot1_test_data
     create_robot2_test_data
     create_robot3_test_data
@@ -166,6 +179,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_sorted_robot_hire_dates_by_year_sorts_robots_by_year
+    skip
     hire_dates = ["17/8/2016", "17/08/2015", "17/8/2013"]
     result = robot_inventory.sorted_robot_hire_dates(hire_dates)
 
@@ -173,6 +187,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_spread_spreads_years_over_certain_amount_of_years
+    skip
     robot_inventory.stub :robots_hire_date_spread, (1..30).to_a do
       hire_dates_spread = robot_inventory.robots_hire_date_spread
       assert_equal [1, 16, 30], hire_dates_spread.spread(3)
@@ -180,6 +195,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_robots_hire_date_spread_gets_array_of_five_years_or_less
+    skip
     hire_dates = [2013, 2014, 2015, 2016]
     assert_equal 4, robot_inventory.robots_hire_date_spread(hire_dates).count
     hire_dates = (2010..2020).to_a
@@ -188,6 +204,7 @@ class RobotInventoryTest < Minitest::Test
   end
 
   def test_robots_hire_date_spread_gives_back_an_array_of_years
+    skip
 
   end
 
